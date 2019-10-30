@@ -1,3 +1,3 @@
 # 426finalProject
 
-This app allows users to rate UNC Computer Science Classes in a Tinder-style fashion.
+This app allows users to rate UNC computer science classes in a Tinder-style fashion.
