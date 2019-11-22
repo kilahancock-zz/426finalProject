@@ -1,0 +1,22 @@
+{
+  "name": "426finalproject",
+  "version": "1.0.0",
+  "description": "This app allows users to rate UNC computer science classes in a Tinder-style fashion.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kilahancock/426finalProject.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kilahancock/426finalProject/issues"
+  },
+  "homepage": "https://github.com/kilahancock/426finalProject#readme",
+  "dependencies": {
+    "browser-sync": "^2.26.7"
+  }
+}
