@@ -17,13 +17,13 @@ function loadClassIntoDOM(course) {
 function like(prevIndex) {
     let cur = prevIndex + 1;
     loadClassIntoDOM(classData[cur]);
-    //TODO: axios request to update number of likes
+    //TODO: request to update the number of likes
 };
 
 function dislike(prevIndex) {
     let cur = prevIndex + 1;
     loadClassIntoDOM(classData[cur]);
-    //TODO: axios request to update number of dislikes
+    //TODO: request to update the number of dislikes
 };
 
 $(function() {
