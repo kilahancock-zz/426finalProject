@@ -13,6 +13,7 @@
      * element that contains the map. */
     #map {
       height: 100%;
+      width: 80%;
     }
     /* Optional: Makes the sample page fill the window. */
     html, body {
@@ -24,8 +25,19 @@
 </head>
 <body>
     <h1 class="title">Hot or Not?: UNC Computer Science Edition</h1>
-    <div class="classCard" id="classCard"></div>
-    <div id="map"></div>
+    <div class="row">
+      <div class="col-6">
+        <div class="classCard" id="classCard"></div>
+      </div>
+      <div class="col-6">
+        <div id="map"></div>
+      </div>
+    </div>
+  </br></br>
+    <div class="row">
+      <div class="col-6 courseComments" id="courseComments"></div>
+    </div>
+  </br></br>
     <script>
       var map;
       function initMap() {
