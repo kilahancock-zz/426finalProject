@@ -1,8 +1,8 @@
 export const renderSite = function() {
     const $root = $('#root');
     renderLogin();
-    $root.on("click", "#fuck", handleCreateButton);
-    $root.on("click", "#leggo", handleLoginButton);
+    $root.on("click", "#createAcc", handleCreateButton);
+    $root.on("click", "#log", handleLoginButton);
 }
 export async function renderLogin() {
     const $root = $('#root');
@@ -15,25 +15,32 @@ export async function renderLogin() {
             </div>
         </div>
 
-                <div class="container" id="create">
-                            <h4>Create Account!</h4>
+                <div class="column">
+                <div class="login" id="create">
+                            <h1>Create Account!</h1>
                             <form class="create" autocomplete="on">
                             First name: <input id="firstName" type="text"> <br>  
                             Username: <input id="newUser" type="text"><br>
                             Password: <input id="newPass" type="password"><br>
-                            GPA: <input type="text"id="gpa"><br><br>
-                            <button type="button" id="fuck">Create Account!</button>
+                            GPA: <input id="gpa"type="text"><br><br>
+                            <p class="submit"><input type="submit" name="commit" value="Create Account" id="createAcc"></p>
                             </form>
                 </div>
+                </div>
 
-                <div class="container" id="login">
-                    <h4>Sign in to begin!</h4>
-                    <form class="login" autocomplete="on">
-                        Username: <input id="user" type="text"><br><br>
-                        Password: <input id="pass" type="password"><br><br>
-                        <button type="button" id="leggo">Let's go!</button>
-                    </form>
-                </div>`;
+                <div class="column">
+                <div class="login">
+                <h1>Login to Web App</h1>
+                    <form autocomplete="on">
+                    Username: <input id="user" type="text"><br>
+                    Password: <input id="pass" type="password"><br>
+                    <p class="submit"><input type="button" value="Login" id="log"></p>
+              </div>
+              
+              <div class="login-help">
+                <p>Forgot your password? <a href="#">Click here to reset it</a>.</p>
+              </div>
+              </div>`;
    
  $root.append(login);
 }
