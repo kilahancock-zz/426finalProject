@@ -23,7 +23,7 @@ export async function renderLogin() {
                             Username: <input id="newUser" type="text"><br>
                             Password: <input id="newPass" type="password"><br>
                             GPA: <input id="gpa"type="text"><br><br>
-                            <p class="submit"><input type="submit" name="commit" value="Create Account" id="createAcc"></p>
+                            <p class="submit"><input type="button" value="Create Account" id="createAcc"></p>
                             </form>
                 </div>
                 </div>
