@@ -76,7 +76,7 @@ export async function handleLoginButton(event) {
             },
       });
     } catch (error) {
-        alert(response.resp);
+       // alert(response.resp);
     } 
    window.location.href = '../app';
 }

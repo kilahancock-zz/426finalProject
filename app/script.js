@@ -1,3 +1,5 @@
+
+
 function renderClassCard(course) {
     return `<div id="classCard" class="classCard">
                 <h1 class="courseName">COMP ${course.number}: ${course.title}</h1>
@@ -8,6 +10,7 @@ function renderClassCard(course) {
                 <div class="comment">Leave a comment:</div>
                 <textarea id="commentText"></textarea></br>
                 <button class="sendComment" type="submit" onclick="comment(${course.id})">Send</button>
+                <button class="btn"><i class="fa fa-close"></i></button>
             </div>`;
 };
 
@@ -31,18 +34,62 @@ function loadCommentsIntoDOM(course) {
     $root.replaceWith(commentsCard);
 }
 
-function like(prevIndex) {
-    let cur = prevIndex + 1;
+async function deleteAcc(event) {
+
+    axios.delete('localhost:300/account/' + $username); 
+}
+
+async function like(prevIndex) {
+    let cur = 0; 
+    if (prevIndex == 20) {
+        cur = 0;  
+    } else {
+        cur = prevIndex + 1;
+    }
     loadClassIntoDOM(classData[cur]);
     loadCommentsIntoDOM(classData[cur]);
-    //TODO: request to update the number of likes
-};
+let currLikes = 0; 
+     let r = await axios.get('http://localhost:3000/public/cards/' + classData[prevIndex].number + '/likes').then((response) => {
+        currLikes = response.data.result 
+    });
+     axios.post('http://localhost:3000/public/cards/' + classData[prevIndex].number + '/likes',
+        {
+        data: currLikes + 1,
+    }).then(response => {
+        classData[prevIndex].likes = currLikes + 1;
+    }).catch(error => {
+        console.log(error);
+    });
+ 
+}
 
-function dislike(prevIndex) {
-    let cur = prevIndex + 1;
+
+async function dislike(prevIndex) {
+    let cur = 0; 
+    if (prevIndex == 20) {
+        cur = 0;  
+    } else {
+        cur = prevIndex + 1;
+    }
     loadClassIntoDOM(classData[cur]);
     loadCommentsIntoDOM(classData[cur]);
     //TODO: request to update the number of dislikes
+    let currDislikes = 0; 
+     let r = await axios.get('http://localhost:3000/public/cards/' + classData[prevIndex].number + '/dislikes').then((response) => {
+        console.log(response);
+        currDisikes = response.data.result
+    });
+
+
+     axios.post('http://localhost:3000/public/cards/' + classData[prevIndex].number + '/dislikes',
+        {
+        data: currDislikes + 1,
+    }).then(response => {
+        classData[prevIndex].dislikes = currDislikes + 1;
+    }).catch(error => {
+        console.log(error);
+    });;
+
 };
 
 function comment(courseID) {
@@ -51,8 +98,21 @@ function comment(courseID) {
     document.getElementById("commentText").value = "";
     //TODO: request to add comment 
 }
+async function updateAll () {
+    for (let i = 0; i < 21; i++) {
+        let r = axios.get('http://localhost:3000/public/cards/' + classData[i].number + '/dislikes').then((response) => {
+            console.log(response);
+            classData[i].dislikes = response.data.result
+        });
+        let x = axios.get('http://localhost:3000/public/cards/' + classData[i].number + '/likes').then((response) => {
+            console.log(response);
+            classData[i].likes = response.data.result
+        });
+}
+}
 
 $(function() {
+    updateAll();
     loadClassIntoDOM(classData[0]);
     loadCommentsIntoDOM(classData[0]);
 });
