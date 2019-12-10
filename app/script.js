@@ -31,6 +31,7 @@ function loadClassIntoDOM(course) {
 function loadCommentsIntoDOM(course) {
     let $root = $('#courseComments');
     let commentsCard = renderCourseComments(course);
+    initMap(course);
     $root.replaceWith(commentsCard);
 }
 
@@ -116,3 +117,12 @@ $(function() {
     loadClassIntoDOM(classData[0]);
     loadCommentsIntoDOM(classData[0]);
 });
+
+var map;
+function initMap(course) {
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 35.9132, lng: -79.055},
+    zoom: 15
+  });
+var marker = new google.maps.Marker({position: course.location, map: map});
+}
