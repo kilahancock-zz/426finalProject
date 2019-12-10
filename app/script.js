@@ -7,7 +7,7 @@ function renderClassCard(course) {
                 <button onclick="like(${course.id})" class="swipeRight" type="button"><i class="fa fa-thumbs-up"></i></button></br>
                 <div class="comment">Leave a comment:</div>
                 <textarea id="commentText"></textarea></br>
-                <button class="sendComment" type="submit" onclick="comment(${course.id})">Send</button>
+                <button class="sendComment" type="submit" onclick="comment(${course.id})">Send</button>  
             </div>`;
 };
 
@@ -28,6 +28,7 @@ function loadClassIntoDOM(course) {
 function loadCommentsIntoDOM(course) {
     let $root = $('#courseComments');
     let commentsCard = renderCourseComments(course);
+    initMap(course);
     $root.replaceWith(commentsCard);
 }
 
@@ -56,3 +57,12 @@ $(function() {
     loadClassIntoDOM(classData[0]);
     loadCommentsIntoDOM(classData[0]);
 });
+
+var map;
+function initMap(course) {
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 35.9132, lng: -79.055},
+    zoom: 15
+  });
+var marker = new google.maps.Marker({position: course.location, map: map});
+}
