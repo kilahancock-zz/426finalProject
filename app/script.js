@@ -1,5 +1,3 @@
-
-
 function renderClassCard(course) {
     return `<div id="classCard" class="classCard">
                 <h1 class="courseName">COMP ${course.number}: ${course.title}</h1>
@@ -12,6 +10,46 @@ function renderClassCard(course) {
                 <button class="sendComment" type="submit" onclick="comment(${course.id})">Send</button>
                 <button class="btn"><i class="fa fa-close"></i></button>
             </div>`;
+};
+
+let modal = document.getElementById("myModal");
+let button = document.getElementById("del");
+let span = document.getElementsByClassName("close")[0];
+
+button.onclick = function () {
+    console.log("inside button click");
+    modal.style.display = "block";
+};
+span.onclick = function () {
+    modal.style.display = "none";
+};
+window.onclick = function (event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+};
+
+async function deleteAccount() {
+    let username = document.getElementById("user").value;
+    let password = document.getElementById("pass").value;
+    try {
+        const response = await axios({
+            method: 'delete',
+            url: 'http://localhost:3000/account/'+ username
+        });
+        console.log("deleted");
+    } catch (error) {
+        console.log(error);
+    }
+    window.location.href= '../../login/index.html';
+};
+
+async function auto() {
+    console.log("inside autocomplete");
+    let input = document.getElementById('commentText').value;
+    let prompt = await axios.get('http://api.datamuse.com/words?rel_bga=' + input + '&max=1').then((response) => {
+        console.log(response.data[0].word);
+    }); 
 };
 
 function renderCourseComments(course) {
@@ -32,12 +70,12 @@ function loadCommentsIntoDOM(course) {
     let $root = $('#courseComments');
     let commentsCard = renderCourseComments(course);
     $root.replaceWith(commentsCard);
-}
+};
 
 async function deleteAcc(event) {
 
     axios.delete('localhost:300/account/' + $username); 
-}
+};
 
 async function like(prevIndex) {
     let cur = 0; 
@@ -61,7 +99,7 @@ let currLikes = 0;
         console.log(error);
     });
  
-}
+};
 
 
 async function dislike(prevIndex) {
@@ -92,12 +130,19 @@ async function dislike(prevIndex) {
 
 };
 
-function comment(courseID) {
+async function comment(courseID) {
     let text = document.getElementById("commentText").value;
     console.log(text);
     document.getElementById("commentText").value = "";
     //TODO: request to add comment 
-}
+    let r = await axios.post('http://localhost:3000/public/cards/' + classData[courseID].number + '/comments',
+        {
+            data: text,
+            type: "merge",
+        }).then((response) => {
+        console.log(response);
+    });
+};
 async function updateAll () {
     for (let i = 0; i < 21; i++) {
         let r = axios.get('http://localhost:3000/public/cards/' + classData[i].number + '/dislikes').then((response) => {
@@ -108,8 +153,8 @@ async function updateAll () {
             console.log(response);
             classData[i].likes = response.data.result
         });
-}
-}
+    }
+};
 
 $(function() {
     updateAll();

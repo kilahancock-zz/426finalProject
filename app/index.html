@@ -36,6 +36,20 @@
   </br></br>
     <div class="row">
       <div class="col-6 courseComments" id="courseComments"></div>
+    </div></br>
+    <div class="row">
+      <button id="del" class="deleteAccount" type="button">Delete My Account</button>
+    </div>
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h5>Enter Information to Delete Account</h5>
+            <form id="deleteInfo">
+                <input id="user" type="text">Username</input></br></br>
+                <input id="pass" type="password">Password</input></br></br>
+                <button id="deleteAcc" onclick="deleteAccount();" type="submit">Confirm</button>
+            </form>
+        </div>
     </div>
   </br></br>
     <script>
