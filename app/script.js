@@ -103,15 +103,17 @@ $( "#commentText" ).autocomplete({
            "displeasure", "woefullness", "happiness", "rage", "unhappiness", "woe", "elation", "grief", "fervor","agitation", "excitement", "joy", "pride", "bad vibes", "thrilled", "shame", "inspired", "remorse", "concerned", "apathy", "calmness", "peaceful", "tranquility", "lethargy", "endearment", "zen", "yearning", "xcited"]
         });
 
-async function deleteAcc(event) {
+async function deleteAcc() {
+    alert("Heeelp");
     let $username = document.getElementById("user"); 
-    axios.delete('localhost:3000/users', {
-        headers: {
-            Authorization: "Bearer " + localStorage.token
-        }, 
-    }).then(response => console.log(response)); 
-    axios.delete('localhost:3000/account/' + $username); 
-    window.location.href = '../login';
+    // axios.delete('localhost:3000/users', {
+    //     headers: {
+    //         Authorization: "Bearer " + localStorage.token
+    //     }, 
+    // }).then(response => console.log(response)); 
+    
+    window.location.href = '../../login';
+    axios.delete('localhost:3000/account/' + $username);
 };
 
 async function like(prevIndex) {
@@ -215,3 +217,4 @@ $(function() {
     loadClassIntoDOM(classData[0]);
     loadCommentsIntoDOM(classData[0]);
 });
+
