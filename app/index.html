@@ -1,71 +1,91 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Hot or Not? UNC Computer Science Edition</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" type="text/css" href="custom.css">
-  <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet"> 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">  
-  <meta name="viewport" content="initial-scale=1.0">
-  <meta charset="utf-8">
-  <style>
-    /* Always set the map height explicitly to define the size of the div
-     * element that contains the map. */
-    #map {
-      height: 100%;
-      width: 80%;
-    }
-    /* Optional: Makes the sample page fill the window. */
-    html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-    }
-  </style> 
+ 
+ <title>Hot or Not? UNC Computer Science Edition</title>
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+ <link rel="stylesheet" type="text/css" href="custom.css">
+ <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+ <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.11/css/mdb.min.css" rel="stylesheet"> 
+ <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.3/themes/hot-sneaks/jquery-ui.css" />
+ <link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet"></link>
+ 
+ <meta name="viewport" content="initial-scale=1.0">
+ <meta charset="utf-8">
+ <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+ <style>
+   /* Always set the map height explicitly to define the size of the div
+    * element that contains the map. */
+   #map {
+     height: 100%;
+     width: 80%;
+   }
+   /* Optional: Makes the sample page fill the window. */
+   html, body {
+     height: 100%;
+     margin: 0;
+     padding: 0;
+   }
+ </style>
 </head>
 <body>
-    <h1 class="title">Hot or Not?: UNC Computer Science Edition</h1>
-    <div class="row">
-      <div class="col-6">
-        <div class="classCard" id="classCard"></div>
-      </div>
-      <div class="col-6">
-        <div id="map"></div>
-      </div>
-    </div>
-  </br></br>
-    <div class="row">
-      <div class="col-6 courseComments" id="courseComments"></div>
-    </div></br>
-    <div class="row">
-      <button id="del" class="deleteAccount" type="button">Delete My Account</button>
-    </div>
-    <div id="myModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h5>Enter Information to Delete Account</h5>
-            <form id="deleteInfo">
-                <input id="user" type="text">Username</input></br></br>
-                <input id="pass" type="password">Password</input></br></br>
-                <button id="deleteAcc" onclick="deleteAccount();" type="submit">Confirm</button>
-            </form>
-        </div>
-    </div>
-  </br></br>
-    <!-- <script>
-      var map;
-      function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 35.9132, lng: -79.055},
-          zoom: 15
-        });
-      var marker = new google.maps.Marker({position: {lat: 35.910270, lng: -79.053291}, map: map});
-      }
-    </script> -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src='..\node_modules\axios\dist\axios.min.js'></script>
-    <script src="data.js"></script>
-    <script src="script.js"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBuinJzinR7xhDjYB76w-bmiUy7GqBkodo&callback=initMap"></script>
+   <h1 class="title">Hot or Not?: UNC Computer Science Edition</h1>
+   <div class="row">
+     <div class="col-6">
+       <div class="classCard" id="classCard"></div>
+     </div>
+     <div class="col-6">
+       <div id="map"></div>
+     </div>
+   </div>
+ </br></br>
+   <div class="row">
+     <div class="col-6 courseComments" id="courseComments"></div>
+   </div></br>
+   <div class="ui-widget center">
+    <label for="commentText">Describe your Experience in One Word:</label></br>
+    <input id="commentText"> <button type="submit" onclick="comment();">Submit</button>
+   </div></br>
+   <div class="row">
+     <button id="edit" class="deleteAccount" type="button">Edit Account</button>
+   </div>
+   <div id="myModal" class="modal">
+       <div class="modal-content">
+           <span class="close">&times;</span>
+           <div class="row">
+             <div class="col-6">
+               <h5>Update Account Information</h5>
+               <form>
+                 <input id="name" type="text"> Name</input></br></br>
+                 <input id="gpa" type="text"> GPA</input></br></br>
+                 <button id="updateAcc" onclick="updateAccount();" type="submit">Update</button>
+               </form>
+             </div>
+             <div class="col-6">
+               <h5>Enter Information to Delete Account</h5>
+               <form id="deleteInfo">
+                 <input id="user" type="text"> Username</input></br></br>
+                 <input id="pass" type="password"> Password</input></br></br>
+                 <button id="deleteAcc" onclick="deleteAccount();" type="submit">Confirm</button>
+               </form>
+             </div>
+           </div>
+       </div>
+   </div>
+ </br></br>
+ <script>$( "#commentText" ).autocomplete({
+  source: [ "love", "f", "uwu", "denial", "hate", "bored", "dislike", "indifference", "melancholy", "sadness", "disgust", "sorrow", "ecstasy", "despair", "like", "dislike",
+   "displeasure", "woefullness", "happiness", "rage", "unhappiness", "woe", "elation", "grief", "fervor","agitation", "excitement", "joy", "pride", "bad vibes", "thrilled", "shame", "inspired", "remorse", "concerned", "apathy", "calmness", "peaceful", "tranquility", "lethargy", "endearment", "zen", "yearning", "xcited", "spite", "spiteful", ""]
+});</script>
+   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+   <script src='https://cdn.rawgit.com/pguso/jquery-plugin-circliful/master/js/jquery.circliful.min.js'></script>
+   <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js" ></script>
+   <script src='..\node_modules\axios\dist\axios.min.js'></script>
+   <script src="data.js"></script>
+   <script src="script.js"></script>
+   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBuinJzinR7xhDjYB76w-bmiUy7GqBkodo&callback=initMap"></script>
 </body>
 </html>
