@@ -50,6 +50,8 @@ export async function handleCreateButton(event) {
     let $username = document.getElementById("newUser").value;
     let $password = document.getElementById("newPass").value;
     let $gpa = document.getElementById("gpa").value;
+    localStorage.setItem('Name', $firstname);
+    localStorage.setItem('GPA', $gpa);
     const response = await axios({
         method: 'post',
         url: 'http://localhost:3000/account/create',
@@ -66,6 +68,7 @@ export async function handleCreateButton(event) {
 export async function handleLoginButton(event) {
     let $username = document.getElementById("user").value;
     let $password = document.getElementById("pass").value;
+    let x; 
     try {
     const response = await axios({
         method: 'post',
@@ -74,12 +77,16 @@ export async function handleLoginButton(event) {
             "name": $username,
             "pass": $password,
             },
+      }).then(response => {
+          localStorage.setItem('token', response.data.jwt);
       });
     } catch (error) {
-       // alert(response.resp);
+        alert(response.resp);
     } 
-   window.location.href = '../app';
-}
+  window.location.href = '../app';
+};
+
+
 $(function () {
     renderSite(); 
     }); 
