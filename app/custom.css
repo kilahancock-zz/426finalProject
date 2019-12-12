@@ -1,13 +1,13 @@
 .title {
     font-size: 400%;
     margin: 4%;
-}
-body {
+ }
+ body {
     font-family: 'Oswald', sans-serif;
     background-image: url("background.png");
     background-size: cover;
-}
-.classCard {
+ }
+ .classCard {
     border: 1px solid #000;
     border-radius: 3px;
     width: 80%;
@@ -15,39 +15,39 @@ body {
     margin: 0 auto;
     padding: 10px;
     background-color: #fff;
-}
-.courseName {
+ }
+ .courseName {
     text-align: center;
-}
-.description {
+ }
+ .description {
     text-align: center;
-}
-.swipeRight {
+ }
+ .swipeRight {
     float: right;
     font-size: 200%;
-}
-.swipeLeft {
+ }
+ .swipeLeft {
     font-size: 200%;
-}
-.stats {
+ }
+ .stats {
     text-align: center;
-}
-.comment {
+ }
+ .comment {
     font-size: 150%;
     text-align: center;
-}
-textarea {
+ }
+ textarea {
     display: block;
     margin-left: auto;
     margin-right: auto;
     width: 50%;
-}
-.sendComment {
+ }
+ .sendComment {
     display: block;
     margin-left: auto;
     margin-right: auto;
-}
-.courseComments {
+ }
+ .courseComments {
     border: 1px solid #000;
     border-radius: 3px;
     width: 60%;
@@ -55,29 +55,29 @@ textarea {
     margin: 0 auto;
     padding: 10px;
     background-color: #fff;
-}
-.center {
+ }
+ .center {
     text-align: center;
-}
-
-.btn {
+ }
+  
+ .btn {
     background-color: lightslategrey;
-    border: none; 
-    color: white; 
-    padding: 12px 16px; 
-    font-size: 16px; 
-    cursor: pointer; 
-}
-.btn:hover {
-    background-color: slategray; 
-}
-.deleteAccount {
+    border: none;
+    color: white;
+    padding: 12px 16px;
+    font-size: 16px;
+    cursor: pointer;
+ }
+ .btn:hover {
+    background-color: slategray;
+ }
+ .deleteAccount {
     margin: 0 auto;
     color: #d13a2f;
-}
-
-/* The Modal (background) */
-.modal {
+ }
+  
+ /* The Modal (background) */
+ .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
@@ -89,8 +89,7 @@ textarea {
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
   }
-  
-  /* Modal Content/Box */
+   /* Modal Content/Box */
   .modal-content {
     background-color: #fefefe;
     margin: 15% auto; /* 15% from the top and centered */
@@ -98,22 +97,20 @@ textarea {
     border: 1px solid #888;
     width: 50%; /* Could be more or less, depending on screen size */
   }
-  
-  /* The Close Button */
+   /* The Close Button */
   .close {
     color: #aaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
   }
-  
-  .close:hover,
+   .close:hover,
   .close:focus {
     color: black;
     text-decoration: none;
     cursor: pointer;
   }
-
+  
   .active, .btn:hover {
     background-color: #666;
     color: white;
