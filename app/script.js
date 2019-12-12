@@ -111,6 +111,7 @@ async function deleteAcc(event) {
         }, 
     }).then(response => console.log(response)); 
     axios.delete('localhost:3000/account/' + $username); 
+    window.location.href = '../login';
 };
 
 async function like(prevIndex) {
